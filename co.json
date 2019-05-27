@@ -1,0 +1,40 @@
+{
+  "code": 1,
+  "sendedList": [
+    {
+      "nonce_str": "wzqVg3CnQeqswzvhLxdYobbAXqiQONRk",
+      "is_partial_use": "0",
+      "endDate": "20190531235959",
+      "mch_id": "1504450061",
+      "coupon_desc": "",
+      "coupon_name": "油券代金券",
+      "favor_type": "DISCOUNT",
+      "coupon_id": "6423653921",
+      "coupon_remain_value": "10000",
+      "end_time_t": "20190531235959",
+      "partner_trade_no": "15044500611558757838596",
+      "scope": "GLOBAL",
+      "coupon_stock_id": "9450057",
+      "begin_time_t": "20190515000000",
+      "send_source": "NORMAL",
+      "coupon_minimum": "20000",
+      "use_time": "0",
+      "end_time": "1559318399",
+      "begin_time": "1557849600",
+      "send_time_t": "20190525121718",
+      "coupon_state": "SENDED",
+      "version": "1.0",
+      "coupon_value": "10000",
+      "device_info": "",
+      "send_time": "1558757838",
+      "coupon_use_value": "0",
+      "appid": "wx47a21bee64eb7a6c",
+      "use_time_t": "19700101080000",
+      "result_code": "SUCCESS",
+      "return_code": "SUCCESS",
+      "startDate": "20190515000000"
+    }
+  ],
+  "expiredList": [],
+  "usedList": []
+}

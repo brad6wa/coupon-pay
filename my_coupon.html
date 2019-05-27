@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="./assets/css/weui.css" />
+  <link rel="stylesheet" href="./assets/css/weuix.css" />
+  <script src="./assets/js/jquery.js"></script>
+  <script src="./assets/js/jquery.cookie.js"></script>
+  <script src="./assets/js/getopenid.js"></script>
+  <script src="./assets/js/zepto.min.js"></script>
+  <script src="./assets/js/zepto.weui.js"></script>
+  <script src="./assets/js/php.js"></script>
+  <script src="./assets/js/iscroll-lite.js"></script>
+  <script>
+    $(function () {
+      $('#t1').tab({
+        defaultIndex: 0,
+        activeClass: 'tab-green',
+        onToggle: function (index) {
+          $('#list' + index).show().siblings('.weui-cells').hide();
+        }
+      })
+    })
+
+  </script>
+  <style>
+    @media (min-width: 560px) {
+      html {
+        font-size: 54px !important;
+      }
+    }
+
+    html {
+      font-size: 13.33333333vw !important;
+    }
+
+    .redColor {
+      color: #E51C23;
+    }
+
+    .container {
+      margin: 0 auto;
+    }
+
+    .container #t1 .weui-navbar__item {
+      font-size: 0.36rem;
+    }
+
+    .container .weui-cells:before,
+    .container .weui-cells:after,
+    .container .weui-cell:before {
+      border: 0 none;
+
+    }
+
+    .container .coupon-item {
+      display: flex;
+      -webkit-box-flex: 1;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      margin: .3rem auto;
+      width: 7.14rem;
+      height: 2.56rem;
+      border-radius: 0.20rem;
+      box-shadow: 1px 0px 7px 1px rgba(170, 170, 170, 1);
+      border: 1px solid rgba(255, 255, 255, 0);
+    }
+
+    .container #list1 .coupon-item,
+    .container #list2 .coupon-item {
+      background-color: rgba(0, 0, 0, .1);
+    }
+
+    .container .coupon-item .coupon-count {
+      width: 1.76rem;
+      text-align: right;
+      font-size: 0.56rem;
+    }
+
+    .container .coupon-item .contenxt {
+      width: 4rem;
+      padding-left: .1rem;
+      font-size: .2rem;
+      color: #9D9D9D;
+    }
+
+    .container .coupon-item .coupon-title {
+      font-size: .28rem;
+      color: #101010;
+      padding-bottom: .2rem;
+    }
+
+    .container .coupon-item .coupon-status {
+      width: 1.02rem;
+      text-align: center;
+    }
+
+    .container .coupon-item .coupon-status .status {
+      padding: 0 .06rem;
+      width: 1rem;
+      height: .42rem;
+      line-height: .42rem;
+      background-color: #E51C23;
+      color: #fff;
+      left: 303px;
+      font-size: .24rem;
+      border-radius: .32rem;
+      border: 1px solid rgba(255, 255, 255, 0);
+
+    }
+
+    .container #list1 .coupon-status .status,
+    .container #list2 .coupon-status .status {
+      background-color: rgba(0, 0, 0, .3);
+    }
+  </style>
+</head>
+
+<body ontouchstart>
+  <div class="container">
+    <div class="weui-tab" id="t1" style="height:44px;">
+      <div class="weui-navbar">
+        <div class="weui-navbar__item">
+          待使用
+        </div>
+        <div class="weui-navbar__item">
+          已使用
+        </div>
+        <div class="weui-navbar__item">
+          已失效
+        </div>
+      </div>
+    </div>
+    <!-- 待使用 -->
+    <div class="weui-cells" id="list0"></div>
+    <script id="tpl0" type="text/html">
+      {{#each sendedList}}
+          <div class="coupon-item">
+            <div class="coupon-count redColor">{{coupon_value/100}}元</div>
+            <div class="contenxt">
+              <div class="coupon-title">{{coupon_name}}</div>
+              <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
+   <div class="coupon-tip1">
+     <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+<span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
+至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+<span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
+    </div>
+
+            </div>
+            <div class="coupon-status">
+                <a href="https://mobile.sxwinstar.net/ccb/web/#/activity/index?activityId=2&isIn=false" class="status">去使用</a>
+            </div>
+          </div>
+      {{/each}}
+    </script>
+
+    <!-- 已使用 -->
+    <div class="weui-cells" id="list1" style="display: none;"></div>
+    <script id="tpl1" type="text/html">
+      {{#each expiredList}}
+          <div class="coupon-item">
+            <div class="coupon-count ">{{coupon_value/100}}元</div>
+            <div class="contenxt">
+              <div class="coupon-title">{{coupon_name}}</div>
+              <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
+              <div class="coupon-tip1">
+                  <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+             <span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
+             至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+             <span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
+                 </div>
+             
+            </div>
+            <div class="coupon-status">
+                <a href="javascript:;" class="status">已使用</a>
+            </div>
+          </div>
+      {{/each}}
+    </script>
+
+    <!-- 已失效 -->
+    <div class="weui-cells" id="list2" style="display: none;"></div>
+    <script id="tpl2" type="text/html">
+      {{#each usedList}}
+          <div class="coupon-item">
+            <div class="coupon-count ">{{coupon_value/100}}元</div>
+            <div class="contenxt">
+              <div class="coupon-title">{{coupon_name}}</div>
+              <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
+              <div class="coupon-tip1">
+                  <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+             <span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
+             至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+             <span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
+                 </div>
+             
+            </div>
+            <div class="coupon-status">
+                <a href="javascript:;" class="status">已失效</a>
+            </div>
+          </div>
+      {{/each}}
+    </script>
+  </div>
+
+</body>
+<script>
+
+  $(function () {
+
+    $.ajax({
+      url: 'http://113.142.56.149:80/CashCoupon/offerList',
+      type: 'POST',
+      dataType: "json",
+      data: { "openid": $.cookie("policePersonOpenId") },
+      // data: { "openid": "oIxLiv5AYTFgmXGkxrxVvzE4XrAI" },
+      success: function (data) {
+        if (data.code === 1) {
+          var comtpl = $.t7.compile(document.getElementById('tpl0').innerHTML);
+          document.getElementById('list0').innerHTML = comtpl(data);
+          var comtpl1 = $.t7.compile(document.getElementById('tpl1').innerHTML);
+          document.getElementById('list1').innerHTML = comtpl1(data);
+          var comtpl2 = $.t7.compile(document.getElementById('tpl2').innerHTML);
+          document.getElementById('list2').innerHTML = comtpl2(data);
+        }
+      }
+    })
+  })
+</script>
+
+</html>

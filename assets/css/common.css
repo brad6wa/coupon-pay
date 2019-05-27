@@ -1,0 +1,9 @@
+@media (min-width: 560px) {
+  html {
+    font-size: 54px !important;
+  }
+}
+
+html {
+  font-size: 13.33333333vw !important;
+}
