@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>购物车</title>
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/weui.css" />
+  <link rel="stylesheet" href="./assets/css/weuix.css" />
+  <script src="./assets/js/zepto.min.js"></script>
+  <script src="./assets/js/zepto.weui.js"></script>
+  <script src="./assets/js/php.js"></script>
+  <script src="./assets/js/iscroll-lite.js"></script>
+  <style>
+    .good-item {
+      display: flex;
+    }
+
+    .weui-cells {
+      margin-top: 0;
+    }
+
+    .weui-cell__bd>p {
+      font-size: .28rem;
+      font-weight: 700;
+    }
+
+    .weui-cell__bd>p.good-spec,
+    .weui-cell__bd .icon-mony {
+      font-size: .14rem;
+      font-weight: normal;
+    }
+
+    .weui-count .weui-count__number {
+      font-size: .32rem;
+      width: .52rem;
+    }
+
+    .weui-check__label {
+      display: flex;
+      align-items: center;
+      width: 236px;
+    }
+
+    .weui-cell {
+      display: flex;
+      justify-content: space-between;
+      /* padding: .08rem; */
+      margin: 5px 0;
+    }
+
+    .footer {
+      height: 0.8rem;
+      line-height: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      /* position: absolute;
+      /* bottom: 0; */
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .footer .topay {
+      background-color: #07c160;
+      width: 100px;
+      float: right;
+    }
+
+    .footer .total-money {
+      padding-left: .16rem;
+    }
+
+    .footer .topay a {
+      width: 100%;
+      height: 100%;
+      color: #fff;
+      display: inline-block;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="body-container">
+    <div class="weui-cells weui-cells_checkbox">
+      <div class="weui-cell">
+        <label class="weui-check__label" for="s1">
+          <div class="weui-cell__hd">
+            <input class="weui-check" name="checkbox1" id="s1" checked type="checkbox">
+            <i class="weui-icon-checked"></i>
+          </div>
+          <div class="weui-cell__bd">
+            <p class="good-title">盯盯拍X2Pro行车记录仪</p>
+            <p class="good-spec">双镜头高清夜视1440P无线wifi GPS前后双录</p>
+            <p class="good-money"><span class="icon-mony">￥</span><span class="good-count">1199</span></p>
+          </div>
+
+        </label>
+        <div class="weui-cell__ft">
+          <div class="weui-count">
+            <a class="weui-count__btn weui-count__decrease"></a>
+            <input class="weui-count__number" type="number" value="1" />
+            <a class="weui-count__btn weui-count__increase"></a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+    <div class="footer">
+      <div class="total-money"><span>应付合计：￥</span><span class="total-count">1199</span></div>
+      <div class="topay">
+        <a href="./car_submit.html">
+          去结算
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  var MAX = 99, MIN = 1;
+  $('.weui-count__decrease').click(function (e) {
+    var $input = $(e.currentTarget).parent().find('.weui-count__number');
+    var number = parseInt($input.val() || "0") - 1
+    var $count = $(e.currentTarget).parents('.weui-cell').find('.good-count')[0].innerText;
+    if (number < MIN) number = MIN;
+    $input.val(number)
+    $('.total-count')[0].innerText = number * $count;
+  })
+  $('.weui-count__increase').click(function (e) {
+    var $input = $(e.currentTarget).parent().find('.weui-count__number');
+    var number = parseInt($input.val() || "0") + 1
+    var $count = $(e.currentTarget).parents('.weui-cell').find('.good-count')[0].innerText;
+    if (number > MAX) number = MAX;
+    $input.val(number)
+    $('.total-count')[0].innerText = number * $count;
+  })
+
+  // $(document).on('click', 'input:checkbox', function () {
+  //   // var that = this;
+  //   if (!$('#s1').is(':checked')) {
+  //     $('.total-count')[0].innerText = 0;
+  //   }
+  // });
+</script>
+
+</html>

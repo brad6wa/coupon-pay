@@ -7,3 +7,12 @@
 html {
   font-size: 13.33333333vw !important;
 }
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-size: .28rem;
+  font-weight: normal;
+}
+
+.body-container {
+  padding: .18rem;
+}

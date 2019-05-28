@@ -3,7 +3,7 @@
 $(function () {
     var policePersonOpenId = $.cookie("policePersonOpenId");
     //如果cookie中不存在openid
-    if (policePersonOpenId == null && policePersonOpenId == '' && policePersonOpenId == "undefined") {
+    if (policePersonOpenId == null || policePersonOpenId == '' || policePersonOpenId == "undefined" || policePersonOpenId == undefined) {
         getCode();
     }
 })
