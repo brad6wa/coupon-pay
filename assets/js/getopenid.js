@@ -29,7 +29,7 @@ function getOpenid(code) {
     if (code == "") {
         $.alert("系统错误,请重试", "警告");
     } else {
-        var param = 'http://113.142.56.149:80/CashCoupon' + "/oauthServlet?code=" + code;
+        var param = 'https://mobile.sxwinstar.net/CashCoupon' + "/oauthServlet?code=" + code;
         $.ajax({
             url: param,
             type: "GET",

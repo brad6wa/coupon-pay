@@ -37,12 +37,23 @@
       font-size: 13.33333333vw !important;
     }
 
-    .redColor {
-      color: #E51C23;
+    .redColor,
+    .weui-navbar__item.tab-green {
+      color: rgb(20, 167, 240);
+    }
+
+    .weui-navbar__item.tab-green {
+      border-bottom-color: rgb(20, 167, 240);
     }
 
     .container {
       margin: 0 auto;
+      background-color: rgba(247, 247, 247);
+    }
+
+    .weui-cells {
+      background-color: rgba(247, 247, 247);
+
     }
 
     .container #t1 .weui-navbar__item {
@@ -65,10 +76,45 @@
       align-items: center;
       margin: .3rem auto;
       width: 7.14rem;
-      height: 2.56rem;
+      height: 2.36rem;
+      justify-content: center;
       border-radius: 0.20rem;
-      box-shadow: 1px 0px 7px 1px rgba(170, 170, 170, 1);
-      border: 1px solid rgba(255, 255, 255, 0);
+      /* box-shadow: 1px 0px 7px 1px rgba(170, 170, 170, 1); */
+      /* border: 1px solid rgba(255, 255, 255, 0.3); */
+      border: 1px solid rgb(20, 167, 240);
+      border-left-width: 6px;
+      position: relative;
+      overflow: hidden;
+      border-top-width: 0;
+      border-bottom-width: 0;
+
+    }
+
+
+    .coupon-item .item1 {
+      width: 100%;
+      height: 100%;
+      /* border: 1px solid rgb(113, 167, 208); */
+      display: flex;
+      -webkit-box-flex: 1;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coupon-item .item2 {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      -webkit-box-flex: 1;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      /* border: 1px solid #ccc; */
+      justify-content: space-around;
     }
 
     .container #list1 .coupon-item,
@@ -77,46 +123,134 @@
     }
 
     .container .coupon-item .coupon-count {
-      width: 1.76rem;
-      text-align: right;
-      font-size: 0.56rem;
+      width: 1.26rem;
+      padding: 0 5px;
+      text-align: center;
+      font-size: 0.54rem;
+      /* border-right: 1px dashed #ccc; */
     }
 
     .container .coupon-item .contenxt {
       width: 4rem;
       padding-left: .1rem;
-      font-size: .2rem;
+      font-size: .28rem;
       color: #9D9D9D;
     }
 
     .container .coupon-item .coupon-title {
-      font-size: .28rem;
+      font-size: .32rem;
       color: #101010;
       padding-bottom: .2rem;
     }
 
     .container .coupon-item .coupon-status {
-      width: 1.02rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      /* border-radius: 50%; */
       text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .container .coupon-item .coupon-status .status {
+
       padding: 0 .06rem;
-      width: 1rem;
-      height: .42rem;
-      line-height: .42rem;
-      background-color: #E51C23;
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(20, 167, 240);
       color: #fff;
       left: 303px;
-      font-size: .24rem;
-      border-radius: .32rem;
+      font-size: .4rem;
       border: 1px solid rgba(255, 255, 255, 0);
+      box-shadow: 0 0 5px 3px #ccc;
 
     }
 
     .container #list1 .coupon-status .status,
     .container #list2 .coupon-status .status {
       background-color: rgba(0, 0, 0, .3);
+    }
+
+    .yuan {
+      font-size: 0.25rem;
+    }
+
+    img {
+      vertical-align: middle;
+      padding-right: 5px;
+      width: 15px;
+      height: 15px;
+    }
+
+    .left {
+      height: 100%;
+    }
+
+    .coupon-item .up {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgb(20, 167, 240);
+      top: -0.1rem;
+      left: 2.2rem;
+      border-radius: 50%;
+    }
+
+    .coupon-item .down {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: 1px solid rgb(20, 167, 240);
+      bottom: -0.1rem;
+      left: 2.2rem;
+      border-radius: 50%;
+    }
+
+    .coupon-item .line1,
+    .coupon-item .line2,
+    .coupon-item .line3,
+    .coupon-item .line4 {
+      position: absolute;
+      width: 10px;
+      /* height: 1px; */
+      border: 1px solid rgb(20, 167, 240);
+    }
+
+    .coupon-item .line1 {
+      top: 0;
+      width: 2.16rem;
+      left: 0;
+    }
+
+    .coupon-item .line2 {
+      top: 0;
+      width: 4.68rem;
+      right: 0;
+    }
+
+    .coupon-item .line3 {
+      bottom: 0;
+      width: 2.16rem;
+      left: 0;
+    }
+
+    .coupon-item .line4 {
+      bottom: 0;
+      width: 4.68rem;
+      right: 0;
+    }
+
+    .coupon-item .shu {
+      position: absolute;
+      top: 0.24rem;
+      left: 2.3rem;
+      height: 1.8rem;
+      border: 1px dashed rgb(20, 167, 240);
     }
   </style>
 </head>
@@ -141,21 +275,37 @@
     <script id="tpl0" type="text/html">
       {{#each sendedList}}
           <div class="coupon-item">
-            <div class="coupon-count redColor">{{coupon_value/100}}元</div>
-            <div class="contenxt">
-              <div class="coupon-title">{{coupon_name}}</div>
-              <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
-   <div class="coupon-tip1">
-     <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
-<span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
-至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
-<span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
-    </div>
-
-            </div>
-            <div class="coupon-status">
-                <a href="https://mobile.sxwinstar.net/ccb/web/#/activity/index?activityId=2&isIn=false" class="status">去使用</a>
-            </div>
+              <a class="item1" href="./car_submit.html">
+                <div  class="item2">
+                    <div class="coupon-count redColor"><span class="yuan">￥</span>{{coupon_value/100}}</div>
+                    <div class="contenxt">
+                      <div class="coupon-title">{{coupon_name}}</div>
+                      <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
+                          <div class="coupon-tip1">
+                            <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+                      至
+                      <span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+                          </div>
+                          <!-- <div class="coupon-tip1">
+                            <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+                      <span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
+                      至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+                      <span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
+                          </div> -->
+                    <div class="ft-text"><img src="./assets/img/wechat.png"/>自动抵扣</div>
+                    </div>
+                    <!-- <div class="coupon-status">
+                        <a href="./car_submit.html" class="status">立即<br>使用</a>
+                    </div> -->
+                </div>
+              </a>
+            <span class="up"></span>
+            <span class="down"></span>
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+            <span class="line4"></span>
+            <span class="shu"></span>
           </div>
       {{/each}}
     </script>
@@ -164,23 +314,39 @@
     <div class="weui-cells" id="list1" style="display: none;"></div>
     <script id="tpl1" type="text/html">
       {{#each expiredList}}
-          <div class="coupon-item">
-            <div class="coupon-count ">{{coupon_value/100}}元</div>
-            <div class="contenxt">
-              <div class="coupon-title">{{coupon_name}}</div>
-              <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
-              <div class="coupon-tip1">
-                  <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
-             <span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
-             至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
-             <span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
-                 </div>
-             
+      <div class="coupon-item">
+          <a class="item1" href="./car_submit.html">
+            <div  class="item2">
+                <div class="coupon-count redColor"><span class="yuan">￥</span>{{coupon_value/100}}</div>
+                <div class="contenxt">
+                  <div class="coupon-title">{{coupon_name}}</div>
+                  <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
+                      <div class="coupon-tip1">
+                        <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+                  至
+                  <span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+                      </div>
+                      <!-- <div class="coupon-tip1">
+                        <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+                  <span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
+                  至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+                  <span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
+                      </div> -->
+                <div class="ft-text"><img src="./assets/img/wechat.png"/>自动抵扣</div>
+                </div>
+                <!-- <div class="coupon-status">
+                    <a href="./car_submit.html" class="status">立即<br>使用</a>
+                </div> -->
             </div>
-            <div class="coupon-status">
-                <a href="javascript:;" class="status">已使用</a>
-            </div>
-          </div>
+          </a>
+        <span class="up"></span>
+        <span class="down"></span>
+        <span class="line1"></span>
+        <span class="line2"></span>
+        <span class="line3"></span>
+        <span class="line4"></span>
+        <span class="shu"></span>
+      </div>
       {{/each}}
     </script>
 
@@ -188,23 +354,39 @@
     <div class="weui-cells" id="list2" style="display: none;"></div>
     <script id="tpl2" type="text/html">
       {{#each usedList}}
-          <div class="coupon-item">
-            <div class="coupon-count ">{{coupon_value/100}}元</div>
-            <div class="contenxt">
-              <div class="coupon-title">{{coupon_name}}</div>
-              <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
-              <div class="coupon-tip1">
-                  <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
-             <span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
-             至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
-             <span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
-                 </div>
-             
+      <div class="coupon-item">
+          <a class="item1" href="./car_submit.html">
+            <div  class="item2">
+                <div class="coupon-count redColor"><span class="yuan">￥</span>{{coupon_value/100}}</div>
+                <div class="contenxt">
+                  <div class="coupon-title">{{coupon_name}}</div>
+                  <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
+                      <div class="coupon-tip1">
+                        <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+                  至
+                  <span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+                      </div>
+                      <!-- <div class="coupon-tip1">
+                        <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+                  <span>{{startDate.substr(8,2)}}</span>:<span>{{startDate.substr(10,2)}}</span>:<span>{{startDate.substr(12,2)}}</span>
+                  至<span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+                  <span>{{endDate.substr(8,2)}}</span>:<span>{{endDate.substr(10,2)}}</span>:<span>{{endDate.substr(12,2)}}可用</span>
+                      </div> -->
+                <div class="ft-text"><img src="./assets/img/wechat.png"/>自动抵扣</div>
+                </div>
+                <!-- <div class="coupon-status">
+                    <a href="./car_submit.html" class="status">立即<br>使用</a>
+                </div> -->
             </div>
-            <div class="coupon-status">
-                <a href="javascript:;" class="status">已失效</a>
-            </div>
-          </div>
+          </a>
+        <span class="up"></span>
+        <span class="down"></span>
+        <span class="line1"></span>
+        <span class="line2"></span>
+        <span class="line3"></span>
+        <span class="line4"></span>
+        <span class="shu"></span>
+      </div>
       {{/each}}
     </script>
   </div>
@@ -215,10 +397,11 @@
   $(function () {
 
     $.ajax({
-      url: 'http://113.142.56.149:80/CashCoupon/offerList',
-      type: 'POST',
+      url: './assets/co.json',
+      // url: 'https://mobile.sxwinstar.net/CashCoupon/offerList',
+      // type: 'POST',
       dataType: "json",
-      data: { "openid": $.cookie("policePersonOpenId") },
+      // data: { "openid": $.cookie("policePersonOpenId") },
       // data: { "openid": "oIxLiv5AYTFgmXGkxrxVvzE4XrAI" },
       success: function (data) {
         if (data.code === 1) {

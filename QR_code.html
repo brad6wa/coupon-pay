@@ -3,13 +3,210 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title></title>
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/weui.css" />
+  <link rel="stylesheet" href="./assets/css/weuix.css" />
+  <script src="./assets/js/common.js"></script>
+  <script src="./assets/js/jquery.js"></script>
+  <script src="./assets/js/jquery.cookie.js"></script>
+  <script src="./assets/js/getopenid.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+  <style>
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background-color: #F8F8F8;
+    }
+
+    .body-container {
+      padding-top: 1.4rem;
+    }
+
+    .msg-hd {
+      text-align: center;
+    }
+
+    .msg-hd h3 {
+      font-size: .36rem;
+      padding-bottom: .2rem;
+    }
+
+    .msg-hd p {
+      font-size: .3rem;
+      color: rgba(0, 0, 0, .6);
+    }
+
+    .msg-bd {
+      margin-top: 1.4rem;
+      background-color: #fff;
+      border-radius: 0.1rem;
+      box-shadow: #000;
+    }
+
+
+    .msg-bd .msg-con {
+      padding-left: .5rem;
+    }
+
+    .msg-con li {
+      padding: 2px 0;
+    }
+
+    .msg-con ul {
+      padding-bottom: .6rem;
+    }
+
+    .msg-logo {
+      height: 1.5rem;
+    }
+
+    .msg-logo h4 {
+      text-align: center;
+      font-size: .42rem;
+      font-weight: 500;
+    }
+
+    .msg-ft {
+      display: flex;
+      justify-content: center;
+      padding-bottom: .6rem;
+    }
+
+    .msg-ft a {
+      width: 4rem;
+      height: .7rem;
+      line-height: .7rem;
+      font-size: .3rem;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="body-container">
+    <div class="msg-hd">
+      <h3>领取成功</h3>
+      <p>在指定商户使用微信支付即可自动抵扣</p>
+    </div>
+    <div class="msg-bd">
+      <div class="msg-logo">
+        <h4>商品代金券</h4>
+      </div>
 
+      <div class="msg-con">
+        <ul>
+          <li>面额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<span class="coupon_value">--</span></li>
+          <li>使用条件：<span class="coupon_mininum">--</span></li>
+          <li>领取时间：<span class=""></span>--</li>
+          <li>可用时间：<span class=""></span>--</li>
+          <li>使用说明：<span class="coupon_desc">--</span></li>
+        </ul>
+      </div>
+      <div class="msg-ft">
+        <a href="javascript:;" class="weui-btn bg-green addBag" id="addCard">添加到卡包</a>
+      </div>
+    </div>
+  </div>
 </body>
+<script>
+  $(function () {
+    var cardId;
+    if (urlx.indexOf('id') != -1) {
+      getMsg(urlx.getQuery('id'))
+      onloadMsg(id)
+    }
+    function getMsg(id) {
+      $.ajax({
+        url: baseUrl + '/getCouponInfomation',
+        type: 'GET',
+        data: {
+          "cashId": id,
+          "openId": $.cookie("policePersonOpenId")
+        },
+        success: function (data) {
+          if (data.code == 1) {
+            $('.coupon_value').text(data.data.coupon_value)
+            $('.coupon_mininum').text(data.data.coupon_mininum)
+            $('.coupon_desc').text(data.data.coupon_desc)
+            cardId = data.data.coupon_id
+          } else {
+            alert(data.message)
+          }
+        }
+      })
+    }
+    function onloadMsg(id) {
+      $.ajax({
+        url: baseUrl + '/addCardInfomation',
+        type: 'POST',
+        data: {
+          "cashId": id
+        },
+        success: function (data) {
+          console.log(data);
+        }
+      })
+    }
+  })
+</script>
+<script>
+  console.log(cardId);
+
+  wx.config({
+
+    debug: true,
+
+    appId: "{$signature['appid']}",
+
+    timestamp: "{ $signature['timestamp']}",
+    // timestamp: { $signature['timestamp']},
+
+    nonceStr: "{$signature['noncestr']}",
+
+    signature: "{$signature['signature']}",
+
+    jsApiList: [
+
+      'addCard'
+
+    ]
+
+  });
+
+  wx.ready(function () {
+
+    //添加卡券
+
+    document.querySelector('#addCard').onclick = function () {
+
+      wx.addCard({
+
+        cardList: [
+
+          {
+
+            cardId: "xxxxxxxxxxxxxxxxxxxxxx",
+
+            cardExt: '{"timestamp":"1426222398","signature":"fdd892770eb681e925f92acb9015c75107b2227a"}'
+
+          }
+
+        ],
+
+        success: function (res) {
+
+          alert('已添加卡券：' + JSON.stringify(res.cardList));
+
+        }
+
+      });
+
+    };
+
+  });
+</script>
 
 </html>

@@ -1,0 +1,114 @@
+
+.container {
+  background-color: rgb(247, 247, 247);
+  .weui-tab {
+    .weui-navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+    
+    .weui-navbar__item {
+      font-size: .36rem;
+    }
+  }
+  .coupon {
+    .con-item {
+      padding: .4rem 0;
+      .weui-cell {
+        font-size: .28rem;
+        height:3rem;
+        padding: 20px 10px;
+        &:before {
+          border-top:0;
+        }
+        >div {
+          height:100%;
+          width:100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .weui-cell__lf {
+          width: 4rem;
+          border:1px solid #18b4ed;
+          border-right:none;
+          border-left-width: 0.14rem;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          font-size: .54rem;
+          color:#18b4ed;
+          em {
+            font-size: .27rem;
+            padding-top: .24rem;
+          }
+        }
+        .weui-cell__md {
+          width: 32px;
+          position: relative;
+          &:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            transform: translate(0, -50%) rotate(135deg);
+            border: 1px solid transparent;
+            border-top-color:  #18b4ed;
+            border-right-color:  #18b4ed;
+            border-radius: 100%;
+            pointer-events: none;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            bottom: -10px;
+            border: 1px solid transparent;
+            border-top-color:  #18b4ed;
+            border-right-color:  #18b4ed;
+            border-radius: 100%;
+            pointer-events: none;
+            transform: rotate(-45deg)!important;
+          }
+          .line {
+            border: 1px dashed transparent;
+            border-right-color:  #18b4ed;
+            height: 60%;
+            
+          }
+        }
+        .weui-cell__rt {
+          border:1px solid #18b4ed;
+          border-left:none;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+          padding:.1rem .3rem;
+          display: block;
+          color:#9D9D9D;
+          .coupon_name {
+            font-size: .32rem;
+            padding-bottom: .1rem;
+            color:#000;
+          }
+          .coupon_msg {
+            padding-left: .4rem;
+            background:url('../img/wechat.png') no-repeat left;
+            background-size: 8%;
+          }
+        }
+      }
+      .no-logo {
+        width: 100%;
+        height: 170px;
+        background:url('../img/no-coupon.png') no-repeat center;
+      }
+      .no-msg {
+        text-align: center;
+        font-size: .28rem;
+        color:rgba(0,0,0,.3);
+      }
+    }
+  }
+}

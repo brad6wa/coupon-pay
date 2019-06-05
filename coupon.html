@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <link rel="stylesheet" href="./assets/css/common.css">
+  <link rel="stylesheet" href="./assets/css/weui.css" />
+  <link rel="stylesheet" href="./assets/css/weuix.css" />
+  <link rel="stylesheet" href="./assets/css/coupon.css">
+</head>
+
+<body ontouchstart>
+  <div class="container">
+    <!-- 顶部通栏 -->
+    <div class="weui-tab" id="coupon-tab" style="height:44px;">
+      <div class="weui-navbar">
+        <div class="weui-navbar__item">
+          待使用
+        </div>
+        <div class="weui-navbar__item">
+          已使用
+        </div>
+        <div class="weui-navbar__item">
+          已失效
+        </div>
+      </div>
+    </div>
+    <!-- 卡券切换展示 -->
+    <div class="coupon">
+      <!-- 插槽 -->
+      <div class=" con-item" id="list"></div>
+      <script id="tpl" type="text/html">
+
+        {{#each list}}
+        <a class="weui-cell weui-cell_access item" href="javascript:;">
+            <div class="weui-cell__lf">
+              <em>&yen;</em><span class="coupon_value">{{coupon_value/100}}</span>
+            </div>
+            <div class="weui-cell__md rip">
+             <div class="line"></div>
+            </div>
+            <div class="weui-cell__rt">
+              <div class="coupon_name">{{coupon_name}}</div>
+              <div class="coupon_minimum">满{{coupon_minimum/100}}可用</div>
+              <div class="coupon_time">
+                  <span>{{startDate.substr(0,4)}}</span>-<span>{{startDate.substr(4,2)}}</span>-<span>{{startDate.substr(6,2)}}</span>
+                  至
+                  <span>{{endDate.substr(0,4)}}</span>-<span>{{endDate.substr(4,2)}}</span>-<span>{{endDate.substr(6,2)}}</span>
+              </div>
+              <div class="coupon_msg">
+                自动抵扣
+              </div>
+             
+            </div>
+        </a>
+        {{else}}
+        <div class="no-res">
+          <div class="no-logo"></div>
+          <div class="no-msg">暂无卡券信息~</div>
+        </div>
+        {{/each}}
+        </script>
+    </div>
+  </div>
+
+  <script src="./assets/js/zepto.min.js"></script>
+  <script src="./assets/js/zepto.weui.js"></script>
+  <script src="./assets/js/php.js"></script>
+  <script src="./assets/js/iscroll-lite.js"></script>
+
+
+  <script>
+
+    $(function () {
+
+      $('#coupon-tab').tab({
+        defaultIndex: 0,
+        activeClass: 'tab-blue',
+        onToggle: function (index) {
+          getList(index)
+          setTimeout(function () {
+            if (index == 0) {
+              $('a.item').each((i, res) => {
+                res.href = 'www.baidu.com';
+              })
+            } else {
+              $('a.item>div').each((i, res) => {
+                res.style.backgroundColor = '#ddd';
+              })
+            }
+          }, 10)
+        }
+      })
+    })
+    function getList(index) {
+      $.ajax({
+        url: './assets/code.json',
+        // url: 'https://mobile.sxwinstar.net/CashCoupon/offerList',
+        // type: 'POST',
+        // dataType: "json",
+        // data: { "openid": $.cookie("policePersonOpenId") },
+        // data: { "openid": "oIxLiv5AYTFgmXGkxrxVvzE4XrAI" },
+        success: (res) => {
+          if (res.code == 1) {
+            let list;
+            switch (index) {
+              case 0://去使用
+                let { sendedList } = res;
+                list = sendedList;
+                break;
+              case 1://已使用
+                let { usedList } = res;
+                list = usedList;
+                break;
+              case 2://已失效
+                let { expiredList } = res;
+                list = expiredList;
+                break;
+              default:
+                list = [];
+                break;
+            }
+            let comtpl = $.t7.compile(document.getElementById('tpl').innerHTML);
+            document.getElementById('list').innerHTML = comtpl({ list: list });
+          }
+        }
+      })
+    }
+  </script>
+
+</html>

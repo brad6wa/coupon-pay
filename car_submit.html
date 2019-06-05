@@ -12,13 +12,16 @@
   <script src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"> </script>
   <script src="./assets/js/jquery.js"></script>
   <script src="./assets/js/jquery.cookie.js"></script>
-  <script src="./assets/js/getopenid.js"></script>
   <script src="./assets/js/zepto.min.js"></script>
   <script src="./assets/js/pay.js"></script>
   <script src="./assets/js/zepto.weui.js"></script>
   <script src="./assets/js/php.js"></script>
   <script src="./assets/js/iscroll-lite.js"></script>
   <style>
+    .redColor {
+      color: #E51C23;
+    }
+
     .goods-total {
       color: #666;
     }
@@ -172,6 +175,19 @@
       border: 1px solid rgba(255, 255, 255, 0);
 
     }
+
+    .weui-popup__modal .modal-content {
+      padding-top: .8rem;
+    }
+
+    .toolbar .toolbar-inner {
+      height: .8rem;
+    }
+
+    .toolbar .title,
+    .toolbar .picker-button {
+      line-height: .8rem;
+    }
   </style>
 </head>
 
@@ -191,7 +207,7 @@
         <div class="weui-cell__bd">优惠券</div>
         <div class="weui-cell__ft">
           <div class="has_coupon open-popup" data-target="#half">
-            油券代金券
+            可用优惠券
           </div>
           <div class="none_coupon" style="display: none;">无可用优惠券</div>
         </div>
@@ -208,7 +224,7 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">优惠金额</div>
         <div class="weui-cell__ft">
-          <div class="yh-money">￥100.00</div>
+          <div class="yh-money">￥<span class="coupon-money">0.00</span></div>
         </div>
       </div>
       <div class="weui-cell">
@@ -227,7 +243,7 @@
     </div>
 
     <div class="footer">
-      <div class="total-money"><span>应付款：</span><span>￥401.00</span></div>
+      <div class="total-money"><span>应付款：</span>￥<span class="payable"></span></div>
       <div class="topay">
         <a href="javascript:;" id="topay">
           去支付
@@ -253,7 +269,7 @@
           <script id="tpl0" type="text/html">
     {{#each sendedList}}
         <div class="coupon-item">
-          <div class="coupon-count redColor">{{coupon_value/100}}元</div>
+          <div class="coupon-count redColor"><span class="cou-money">{{coupon_value/100}}</span>元</div>
           <div class="contenxt">
             <div class="coupon-title">{{coupon_name}}</div>
             <div class="coupon-time">满{{coupon_minimum/100}}元可用</div>
@@ -265,7 +281,7 @@
               </div>
       </div>
       <div class="coupon-status">
-          <input type="checkbox">
+          <input  type="radio" name="upgrade">
       </div>
     </div>
 {{/each}}
@@ -280,7 +296,8 @@
 </body>
 <script>
   $(function () {
-    var baseUrl = 'http://113.142.56.149:80/CashCoupon'
+
+    var baseUrl = 'https://mobile.sxwinstar.net/CashCoupon'
     var prepay_id;
     var paySign;
     var appId;
@@ -289,6 +306,8 @@
     var packageStr;
     var signType;
 
+    $('.payable')[0].innerText = $('.total')[0].innerText - $('.coupon-money')[0].innerText + '.00';
+
     $('#topay').click(function () {
       pay()
     })
@@ -296,10 +315,12 @@
       getcoupon()
     })
 
+    // 选择优惠券
+
     function getcoupon() {
       $.ajax({
-        // url: baseUrl + '/offerList',
-        url: './assets/co.json',
+        url: baseUrl + '/offerList',
+        // url: './assets/co.json',
         type: 'POST',
         dataType: "json",
         data: { "openid": $.cookie("policePersonOpenId") },
@@ -307,6 +328,14 @@
           if (data.code === 1) {
             var comtpl = $.t7.compile(document.getElementById('tpl0').innerHTML);
             document.getElementById('list0').innerHTML = comtpl(data);
+
+            $('input:radio').click(function () {
+              var couponMoney = $(this).parents('.coupon-item').find('.cou-money')[0].innerText;
+              var couponTitle = $(this).parents('.coupon-item').find('.coupon-title')[0].innerText;
+              $('.has_coupon')[0].innerText = couponTitle;
+              $('.coupon-money')[0].innerText = couponMoney + '.00';
+              $('.payable')[0].innerText = $('.total')[0].innerText - $('.coupon-money')[0].innerText + '.00';
+            })
           }
         }
       })
